@@ -1,0 +1,103 @@
+const http = require("http");
+
+const bookServer = http.createServer(function (request, response) {
+  // הגדר כותרת HTTP
+  response.setHeader("Content-Type", "text/html");
+  // שלח HTML ללקוח
+  response.write(`
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Component By Function</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #e6f7ff;
+        }
+        .content-container {
+            text-align: center;
+        }
+        .book-card {
+            width: 250px;
+            height: 350px;
+            border: 1px solid #ccc;
+            background: linear-gradient(to bottom, white 55%, #ffdf3c 55%);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            margin: 20px auto;
+        }
+        .book-card::before {
+            content: 'O\'REILLY';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 10px;
+            color: #444;
+            font-weight: bold;
+        }
+        .book-title {
+            margin-top: 130px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .book-subtitle {
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        .js-logo {
+            font-size: 130px;
+            font-weight: bold;
+            color: black;
+            margin-top: 50px;
+        }
+        .author-info {
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #0066cc;
+        }
+        .book-description {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #555;
+        }
+        .footer-note {
+            margin-top: 20px;
+            font-size: 10px;
+            color: #777;
+        }
+        h2 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <h2>Book Component By Function</h2>
+        <div class="book-card">
+            <div class="book-title">SCOPE & CLOSURES</div>
+            <div class="book-subtitle">BY KYLE SIMPSON</div>
+            <div class="js-logo">JS</div>
+        </div>
+        <div class="author-info">By Kyle Simpson</div>
+        <div class="book-description">Parts of the language that many JavaScript programmers simply avoid.</div>
+        <div class="footer-note">&copy; 2021 Tania</div>
+    </div>
+</body>
+</html>
+  `);
+  response.end("Hello from the server");
+});
+
+bookServer.listen(3001, () => {
+  console.log("Server is running on port 3001");
+});
